@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import collections
+import pip 
 
 from setuptools import setup, find_packages
 from pip.req import parse_requirements
-
 
 def get_install_requirements():
 
@@ -14,7 +14,7 @@ def get_install_requirements():
     requires = []
     dependency_links = []
 
-    for ir in parse_requirements('requirements.txt', options=opts):
+    for ir in parse_requirements('requirements.txt', options=opts, session=pip.download.PipSession()):
         if ir is not None:
             if ir.url is not None:
                 dependency_links.append(str(ir.url))
